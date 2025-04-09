@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ExpenseTracker.Models.Expense>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список расходов</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Сумма</th>
+            <th>Категория</th>
+            <th>Дата</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="3">Нет расходов для отображения.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var expense in Model)
+            {
+                <tr>
+                    <td>@expense.Amount</td>
+                    <td>@expense.Category</td>
+                    <td>@expense.Date.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<a href="/Expenses/Add" class="btn btn-primary">Добавить расход</a>
